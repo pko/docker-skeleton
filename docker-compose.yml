@@ -13,6 +13,15 @@ services:
 
   engine:
     build: ./docker/engine/
+    expose:
+        - "9000"
+        - "9001"
+    ports:
+        - "9001:9001"
+    environment:
+        PHP_XDEBUG_ENABLED: 1
+        XDEBUG_CONFIG: remote_host=172.19.0.1
+        SERVER_NAME: docker
     volumes:
       - .:/home/projects/docker-skeleton:rw
       - ./docker/engine/php.ini:/usr/local/etc/php/conf.d/custom.ini:ro
